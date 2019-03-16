@@ -77,19 +77,14 @@ void UMainMenu::SelectIndex(uint32 Index)
 
 void UMainMenu::JoinServer()
 {
-	if (SelectedIndex.IsSet())
+	if (SelectedIndex.IsSet() && MenuInterface != nullptr)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Selected index %d."), SelectedIndex.GetValue());
+		MenuInterface->Join(SelectedIndex.GetValue());
 	}
-	else {
-		UE_LOG(LogTemp, Warning, TEXT("Selected index not set."));
-	}
-	if (MenuInterface != nullptr)
+	else 
 	{
-		//if (!ensure(ipaddressfield != nullptr)) return;
-		//const fstring& address = ipaddressfield->gettext().tostring();
-		MenuInterface->Join("");
-
+		UE_LOG(LogTemp, Warning, TEXT("Selected index not set."));
 	}
 }
 
